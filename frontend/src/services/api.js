@@ -7,7 +7,13 @@
 import axios from 'axios';
 
 const client = axios.create({
-  baseURL: import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL}/api` : '/api',
+  // In production, fall back to the Render backend URL if VITE_API_URL isn't set.
+  // Set VITE_API_URL in the Render dashboard to override (e.g. https://ztguard-api.onrender.com)
+  baseURL: import.meta.env.VITE_API_URL
+    ? `${import.meta.env.VITE_API_URL}/api`
+    : import.meta.env.PROD
+      ? 'https://ztguard-api.onrender.com/api'
+      : '/api',
   headers: { 'Content-Type': 'application/json' },
 });
 
