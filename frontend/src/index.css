@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+/* ── Base token overrides ─────────────────────────────────────────────────── */
+
+:root {
+  --color-bg-base:     #0b0f1a;
+  --color-bg-surface:  #111827;
+  --color-bg-elevated: #1a2236;
+  --color-border:      #1f2d45;
+  --color-accent:      #3b82f6;
+  --color-accent-dim:  #1d4ed8;
+  --color-text-primary:   #e2e8f0;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted:     #4b5563;
+
+  /* Semantic risk colors */
+  --color-low:     #22c55e;
+  --color-medium:  #f59e0b;
+  --color-high:    #ef4444;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-bg-base);
+  color: var(--color-text-primary);
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Scrollbar ────────────────────────────────────────────────────────────── */
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--color-bg-base); }
+::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #2d3f5a; }
+
+/* ── Utility classes used in components ─────────────────────────────────── */
+
+.panel {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+}
+
+.panel-elevated {
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+}
+
+.label-tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ── Risk badges ─────────────────────────────────────────────────────────── */
+
+.badge-low    { color: #22c55e; background: rgba(34,197,94,0.10);  border: 1px solid rgba(34,197,94,0.25);  }
+.badge-medium { color: #f59e0b; background: rgba(245,158,11,0.10); border: 1px solid rgba(245,158,11,0.25); }
+.badge-high   { color: #ef4444; background: rgba(239,68,68,0.10);  border: 1px solid rgba(239,68,68,0.25);  }
+.badge-info   { color: #3b82f6; background: rgba(59,130,246,0.10); border: 1px solid rgba(59,130,246,0.25); }
+
+/* ── Step check states ───────────────────────────────────────────────────── */
+
+.check-pass    { color: #22c55e; }
+.check-warn    { color: #f59e0b; }
+.check-fail    { color: #ef4444; }
+.check-pending { color: #4b5563; }
+
+/* ── Pulse animation for active states ───────────────────────────────────── */
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+.pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }
+
+/* ── Step progress animation ─────────────────────────────────────────────── */
+
+@keyframes slide-in-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.slide-in { animation: slide-in-up 0.3s ease-out forwards; }
+
+/* ── Decision result animation ───────────────────────────────────────────── */
+
+@keyframes result-appear {
+  from { opacity: 0; transform: scale(0.97); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.result-appear { animation: result-appear 0.4s ease-out forwards; }
+
+/* ── Divider ─────────────────────────────────────────────────────────────── */
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--color-border);
+}

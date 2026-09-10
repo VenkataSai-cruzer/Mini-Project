@@ -1,0 +1,30 @@
+services:
+  # ── Backend API ──────────────────────────────────────────────────────────────
+  - type: web
+    name: ztguard-api
+    runtime: node
+    rootDir: backend
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: USE_IN_MEMORY
+        value: "true"
+      - key: JWT_SECRET
+        generateValue: true
+      - key: FRONTEND_URL
+        sync: false  # Set after frontend is deployed
+    healthCheckPath: /api/health
+
+  # ── Frontend (Static Site) ───────────────────────────────────────────────────
+  - type: static_site
+    name: ztguard-frontend
+    rootDir: frontend
+    plan: free
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        sync: false  # Set to your backend URL after deploy, e.g. https://ztguard-api.onrender.com
