@@ -682,7 +682,7 @@ function ResultView({ scenario, result, onReset, onEnterResource, onVerify }) {
             style={{ background: '#22c55e', color: '#000' }}
           >
             <ArrowRight size={15} />
-            {activeScenario?.isContinuous ? 'Go to Active Session (Simulate Context Change)' : 'Enter Student Resource'}
+            {scenario?.isContinuous ? 'Go to Active Session (Simulate Context Change)' : 'Enter Student Resource'}
           </button>
         )}
 
